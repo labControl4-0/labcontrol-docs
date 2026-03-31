@@ -102,6 +102,16 @@ Mesmo sendo uma sprint inicial, foram gerados valores importantes:
 
 ---
 
+## 🎥 Vídeo da Sprint Review
+
+A apresentação da Sprint Review pode ser acessada pelo link abaixo:
+
+🔗 https://youtu.be/Tv_XJUu8HJ0
+
+O vídeo demonstra as principais entregas da sprint, decisões arquiteturais e o valor gerado pelo projeto LabControll 4.0.
+
+---
+
 # 🔁 Sprint Retrospective
 
 ## 🎯 Objetivo
