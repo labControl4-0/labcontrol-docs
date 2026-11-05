@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>LabControl 4.0 - Plano de Governança de TI</title>
+<style>
+  @page {
+    size: A4;
+    margin: 20mm 15mm 20mm 15mm;
+    @bottom-center {
+      content: counter(page);
+    }
+  }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #1a202c;
+    line-height: 1.6;
+    font-size: 11pt;
+  }
+  .cover {
+    page-break-after: always;
+    text-align: center;
+    padding-top: 80px;
+  }
+  .cover h1 {
+    font-size: 28pt;
+    color: #1a365d;
+    margin-bottom: 10px;
+    font-weight: 800;
+  }
+  .cover h2 {
+    font-size: 18pt;
+    color: #2b6cb0;
+    margin-bottom: 30px;
+    font-weight: 500;
+  }
+  .cover .institution {
+    font-size: 14pt;
+    color: #4a5568;
+    margin-top: 100px;
+  }
+  .cover .meta {
+    margin-top: 80px;
+    font-size: 11pt;
+    color: #718096;
+  }
+  h1, h2, h3 {
+    color: #2c5282;
+    page-break-after: avoid;
+  }
+  h1 {
+    font-size: 18pt;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 6px;
+    margin-top: 24pt;
+  }
+  h2 {
+    font-size: 14pt;
+    margin-top: 16pt;
+  }
+  h3 {
+    font-size: 12pt;
+    margin-top: 12pt;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 9.5pt;
+    page-break-inside: avoid;
+  }
+  th, td {
+    border: 1px solid #cbd5e0;
+    padding: 8px 10px;
+    text-align: left;
+  }
+  th {
+    background-color: #ebf8ff;
+    color: #2b6cb0;
+    font-weight: 700;
+  }
+  tr:nth-child(even) {
+    background-color: #f7fafc;
+  }
+  code {
+    background-color: #edf2f7;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-family: Consolas, monospace;
+    font-size: 9pt;
+  }
+  pre {
+    background-color: #f7fafc;
+    border: 1px solid #e2e8f0;
+    padding: 10px;
+    border-radius: 6px;
+    font-family: Consolas, monospace;
+    font-size: 8.5pt;
+    overflow-x: auto;
+  }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    font-size: 8pt;
+    font-weight: 700;
+    border-radius: 4px;
+    background: #c6f6d5;
+    color: #22543d;
+  }
+  .page-break {
+    page-break-after: always;
+  }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <h1>LABCONTROL 4.0</h1>
+  <h2>PLANO CONSOLIDADO DE GOVERNANÇA DE TI</h2>
+  <div class="institution">
+    <p><strong>FACULDADE DE TECNOLOGIA SENAI (UniSENAI - Sorocaba)</strong></p>
+    <p>Curso Superior de Tecnologia em Análise e Desenvolvimento de Sistemas</p>
+    <p>Projeto Integrador IV (PI-IV) — 4º Semestre</p>
+  </div>
+  <div class="meta">
+    <p><strong>Equipe:</strong> Giovani Miamoto, Victor Geroto, Carlos Eduardo Oliveira, André Fernandes, Gustavo Silveira</p>
+    <p><strong>Responsável pela Governança:</strong> Giovani Miamoto (@giovanimiamotob)</p>
+    <p><strong>Organização:</strong> <a href="https://github.com/labControl4-0">github.com/labControl4-0</a></p>
+    <p><strong>Data:</strong> Novembro / 2026</p>
+  </div>
+</div>
+
+<h1>1. Sumário Executivo e Alinhamento Estratégico</h1>
+<p>O <strong>LabControl 4.0</strong> é uma solução de telemetria em tempo real, monitoramento e supervisão de ativos para plantas industriais e laboratoriais. Este Plano de Governança de TI estrutura os processos, controles e evidências que garantem que o produto seja desenvolvido e operado com alto padrão de qualidade, segurança cibernética, rastreabilidade e aderência às melhores práticas de mercado (COBIT, ITIL 4 e NIST CSF).</p>
+
+<h2>1.1 Objetivos de Governança para o PI-IV</h2>
+<ul>
+  <li><strong>Confiabilidade do Serviço:</strong> Estabelecer catálogo formal de serviços, metas de disponibilidade (SLO 99.0%) e runbooks de resolução rápida.</li>
+  <li><strong>Rastreabilidade de Mudanças:</strong> Garantir que 100% das alterações em código e documentação passem por Pull Requests com validação automatizada em pipelines de Integração Contínua (CI).</li>
+  <li><strong>Higiene e Proteção de Dados:</strong> Mascaramento estrito de credenciais e dados sensíveis em logs operacionais e eliminação de segredos versionados.</li>
+  <li><strong>Matriz de Responsabilidades Claras:</strong> Eliminação de ambiguidades operacionais através da matriz RACI cobrindo todas as frentes (Backend, Frontend, Mobile, IoT, Segurança e Gestão).</li>
+</ul>
+
+<h1>2. Partes Interessadas e Matriz RACI</h1>
+<p>A atribuição de papéis do projeto distribui as responsabilidades operacionais conforme a tabela abaixo:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Frente de Trabalho / Macro-Pacote</th>
+      <th>Giovani M.</th>
+      <th>Victor G.</th>
+      <th>Carlos E.</th>
+      <th>André F.</th>
+      <th>Gustavo S.</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Governança: Matriz RACI, CI e Observabilidade</strong></td>
+      <td><strong>A / R</strong></td>
+      <td>C</td>
+      <td>C</td>
+      <td>C</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <td><strong>Governança: Riscos, Backup e Políticas</strong></td>
+      <td>C</td>
+      <td><strong>A / R</strong></td>
+      <td>I</td>
+      <td>I</td>
+      <td>I</td>
+    </tr>
+    <tr>
+      <td><strong>Gestão de Projetos: EAP, Backlog e Acordos</strong></td>
+      <td><strong>A / R</strong></td>
+      <td>C</td>
+      <td>I</td>
+      <td>I</td>
+      <td>I</td>
+    </tr>
+    <tr>
+      <td><strong>Cibersegurança: Modelagem STRIDE, DAST e Relatório</strong></td>
+      <td><strong>A / R</strong></td>
+      <td>C</td>
+      <td>C</td>
+      <td>C</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <td><strong>Backend: Java 21, Spring Boot 3 e APIs</strong></td>
+      <td>I</td>
+      <td>C</td>
+      <td><strong>A / R</strong></td>
+      <td>C</td>
+      <td>C</td>
+    </tr>
+    <tr>
+      <td><strong>Frontend Web: Dashboard, Planta Baixa e UX</strong></td>
+      <td>C</td>
+      <td>I</td>
+      <td>C</td>
+      <td><strong>A / R</strong></td>
+      <td>I</td>
+    </tr>
+    <tr>
+      <td><strong>Mobile: React Native, SQLite Offline e Push</strong></td>
+      <td>C</td>
+      <td>I</td>
+      <td>C</td>
+      <td>I</td>
+      <td><strong>A / R</strong></td>
+    </tr>
+    <tr>
+      <td><strong>IoT: Broker MQTT Mosquitto e Node-RED</strong></td>
+      <td>I</td>
+      <td>I</td>
+      <td>C</td>
+      <td>I</td>
+      <td><strong>A / R</strong></td>
+    </tr>
+  </tbody>
+</table>
+<p><em>Legenda: A = Accountable (Aprovador/Dono), R = Responsible (Executor), C = Consulted (Consultado), I = Informed (Informado).</em></p>
+
+<div class="page-break"></div>
+
+<h1>3. Habilitação de Mudanças e Integração Contínua (CI)</h1>
+<p>O ciclo de vida de mudanças no código e na infraestrutura é governado pelo modelo <strong>GitHub Flow</strong>, com branch protection obrigatório na branch <code>main</code>.</p>
+
+<h2>3.1 Regras Mandatórias de Mudança</h2>
+<ol>
+  <li><strong>Proibição de Push Direto:</strong> Commits diretos na branch principal são estritamente bloqueados; qualquer alteração deve originar-se de uma branch de feature ou documentação.</li>
+  <li><strong>Aprovação por Pares (Peer Review):</strong> Pelo menos um desenvolvedor deve aprovar o Pull Request antes da integração.</li>
+  <li><strong>Automação CI Obrigatória:</strong> O pipeline do GitHub Actions deve executar testes estáticos, linter e validação de segredos com status verde.</li>
+</ol>
+
+<h2>3.2 Exemplo de Pipeline de CI em Operação</h2>
+<pre><code>name: CI - Docs Quality & Compliance
+on: [push, pull_request]
+jobs:
+  validate-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Directory Structure Check
+        run: test -d docs/gestao && test -d docs/governanca && test -d docs/seguranca
+      - name: Secret Leak Prevention Scan
+        run: grep -rnE "(password\s*=\s*['\"][^'\"]{8,}['\"]|ghp_[A-Za-z0-9]{36})" docs/ && exit 1 || echo "Clean"</code></pre>
+
+<h1>4. Gestão de Serviços de TI e Resposta a Incidentes</h1>
+<p>O LabControl 4.0 provê quatro serviços centrais organizados sob acordos de nível de serviço específicos:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Serviço</th>
+      <th>Protocolo / Porta</th>
+      <th>SLA Disponibilidade</th>
+      <th>Tempo Resposta Máximo</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Telemetria & Mensageria IoT</strong></td>
+      <td>MQTT (TCP 1883 / WS 9001)</td>
+      <td>99.0%</td>
+      <td>&lt; 500 ms (latência ponta a ponta)</td>
+    </tr>
+    <tr>
+      <td><strong>API Central e Sincronização</strong></td>
+      <td>REST HTTP (Porta 8080)</td>
+      <td>99.5%</td>
+      <td>&lt; 300 ms (tempo de resposta)</td>
+    </tr>
+    <tr>
+      <td><strong>Portal Web Industrial</strong></td>
+      <td>HTTP/HTTPS (Porta 80)</td>
+      <td>99.0%</td>
+      <td>&lt; 1.5 s (renderização inicial)</td>
+    </tr>
+    <tr>
+      <td><strong>App Mobile Chão de Fábrica</strong></td>
+      <td>Expo / SQLite Local</td>
+      <td>Autônomo (Offline-First)</td>
+      <td>Até 8h de operação contínua sem rede</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>4.1 Matriz de Severidade de Incidentes</h2>
+<ul>
+  <li><strong>SEV 1 (Crítico):</strong> Interrupção total de telemetria ou queda da API central. SLA de Resposta: <strong>30 minutos</strong>.</li>
+  <li><strong>SEV 2 (Alto):</strong> Falha na fila de sincronização mobile ou alertas críticos atrasados. SLA de Resposta: <strong>2 horas</strong>.</li>
+  <li><strong>SEV 3 (Médio):</strong> Inconsistência na renderização de planta baixa ou lentidão pontual. SLA de Resposta: <strong>8 horas</strong>.</li>
+  <li><strong>SEV 4 (Baixo):</strong> Ajustes estéticos ou dúvidas operacionais. SLA de Resposta: <strong>24 horas</strong>.</li>
+</ul>
+
+<div class="page-break"></div>
+
+<h1>5. Cibersegurança e Mitigação de Riscos (STRIDE)</h1>
+<p>A arquitetura foi analisada sob a metodologia STRIDE, identificando os vetores críticos de ataque e suas respectivas barreiras de contenção:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Categoria STRIDE</th>
+      <th>Vetor no LabControl 4.0</th>
+      <th>Impacto DREAD</th>
+      <th>Controle Mitigatório Implementado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Spoofing</strong></td>
+      <td>Sensor falso injetando telemetria anônima</td>
+      <td>Crítico (8.2)</td>
+      <td>Desabilitação de conexões anônimas e ACL de tópicos no Mosquitto.</td>
+    </tr>
+    <tr>
+      <td><strong>Tampering</strong></td>
+      <td>Adulteração de leituras de máquinas no dispositivo móvel</td>
+      <td>Alto (7.4)</td>
+      <td>Validação de timestamp e assinatura local na fila SQLite.</td>
+    </tr>
+    <tr>
+      <td><strong>Information Disclosure</strong></td>
+      <td>Exposição de credenciais ou segredos em logs e commits</td>
+      <td>Crítico (8.2)</td>
+      <td>Scan de segredos no CI e política de mascaramento estrito em logs JSON.</td>
+    </tr>
+    <tr>
+      <td><strong>Elevation of Privilege</strong></td>
+      <td>Operador tentando acessar rotas administrativas</td>
+      <td>Crítico (8.2)</td>
+      <td>Controle de acesso baseado em papéis (RBAC com Spring Security).</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1>6. Matriz de Controle e Evidências</h1>
+<p>Todos os controles de governança apontam para artefatos verificáveis versionados no repositório:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Controle</th>
+      <th>Diretriz de Governança</th>
+      <th>Evidência Rastreável no Repositório</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>CTL-01</strong></td>
+      <td>Declaração de Escopo e EAP</td>
+      <td><code>docs/gestao/escopo-eap.md</code></td>
+      <td><span class="badge">Validado</span></td>
+    </tr>
+    <tr>
+      <td><strong>CTL-02</strong></td>
+      <td>Matriz RACI e Decisões</td>
+      <td><code>docs/governanca/partes-interessadas-raci.md</code></td>
+      <td><span class="badge">Validado</span></td>
+    </tr>
+    <tr>
+      <td><strong>CTL-03</strong></td>
+      <td>Gestão de Mudanças e PRs</td>
+      <td><code>docs/governanca/mudancas-ci.md</code> + Pull Request #30</td>
+      <td><span class="badge">Validado</span></td>
+    </tr>
+    <tr>
+      <td><strong>CTL-04</strong></td>
+      <td>Pipeline de Integração Contínua</td>
+      <td><code>.github/workflows/ci.yml</code> (GitHub Actions Run #1)</td>
+      <td><span class="badge">Validado</span></td>
+    </tr>
+    <tr>
+      <td><strong>CTL-06</strong></td>
+      <td>Catálogo de Serviços e SLAs</td>
+      <td><code>docs/operacao/servico.md</code></td>
+      <td><span class="badge">Validado</span></td>
+    </tr>
+    <tr>
+      <td><strong>CTL-08</strong></td>
+      <td>Modelagem de Ameaças STRIDE</td>
+      <td><code>docs/seguranca/modelagem-ameacas.md</code></td>
+      <td><span class="badge">Validado</span></td>
+    </tr>
+    <tr>
+      <td><strong>CTL-12</strong></td>
+      <td>Plano Consolidado em PDF</td>
+      <td><code>docs/plano-governanca-ti.pdf</code></td>
+      <td><span class="badge">Validado</span></td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+<p style="text-align: center; color: #718096; font-size: 9pt;"><em>Documento oficial gerado e auditado para o Projeto Integrador IV — UniSENAI Sorocaba.</em></p>
+
+</body>
+</html>
