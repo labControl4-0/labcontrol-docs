@@ -1,0 +1,36 @@
+name: CI - Docs Quality & Compliance
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  validate-docs:
+    name: Markdown & Integrity Verification
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Check required directories structure
+        run: |
+          echo "Verifying documentation structure..."
+          test -d docs/gestao || (echo "Missing docs/gestao" && exit 1)
+          test -d docs/governanca || (echo "Missing docs/governanca" && exit 1)
+          test -d docs/seguranca || (echo "Missing docs/seguranca" && exit 1)
+          test -d docs/operacao || (echo "Missing docs/operacao" && exit 1)
+          echo "All core documentation directories are present."
+
+      - name: Secret Leak Prevention Scan
+        run: |
+          echo "Checking for leaked secrets or raw credentials..."
+          # Scan for patterns like raw passwords, private keys, or exposed tokens
+          grep -rnE "(password\s*=\s*['\"][^'\"]{8,}['\"]|ghp_[A-Za-z0-9]{36}|BEGIN PRIVATE KEY)" docs/ && exit 1 || echo "No leaked secrets detected."
